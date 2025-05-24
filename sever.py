@@ -16,7 +16,16 @@ s.listen(2)
 print("Waiting for a connection, Sever Started")
 
 def threaded_client(conn):
-    pass
+    
+    reply = ""
+    while True:
+        try:
+            data = conn.recv(2048)
+            reply = data.decode("utf-8")
+
+            if not data:
+                print("Disconnected")
+                break
 
 while True:
     conn, addr = s.accept()
